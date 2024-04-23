@@ -57,6 +57,20 @@ def appleSpawner():
     return pygame.Rect(appleX, appleY, snakeSize, snakeSize)
 
 
+def moveSnake(snakeHead, dx, dy):
+    """Move the snake."""
+    snakeHead.x += dx
+    snakeHead.y += dy
+
+
+def collisionsChecker(snakeHead, snakeBody):
+    """Check for collisions with walls or itself."""
+    if (snakeHead.left < 0 or snakeHead.right > windowWidth or
+        snakeHead.top < 0 or snakeHead.bottom > windowHeight or
+        any(snakeHead.colliderect(bodyPart) for bodyPart in snakeBody[1:])):
+        return True
+    return False
+
 score = 0
 
 # Main game loop
