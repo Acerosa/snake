@@ -7,7 +7,7 @@ pygame.init()
 # Set display window
 windowWidth = 600
 windowHeight = 600
-displaySurface = pygame.display.set_mode((windowWidth, windowHeight))
+screen = pygame.display.set_mode((windowWidth, windowHeight))
 pygame.display.set_caption("Snakes~~~~")
 
 # Set FPS and clock
@@ -35,3 +35,39 @@ font = pygame.font.SysFont('gabriola', 48)
 
 # Set sounds and music
 pickUpSound = pygame.mixer.Sound("pickUpSound.wav")
+
+def textDrawer(text, font, color, surface, x, y):
+    """Draw text on the screen."""
+    textSurface = font.render(text, True, color)
+    textRect = textSurface.get_rect()
+    textRect.topleft = (x, y)
+    surface.blit(textSurface, textRect)
+
+def inputHandler():
+    """Handle user input."""
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            return False
+    return True
+
+def appleSpawner():
+    """Spawn an apple at a random location."""
+    appleX = random.randint(0, (windowWidth - snakeSize) // snakeSize) * snakeSize
+    appleY = random.randint(0, (windowHeight - snakeSize) // snakeSize) * snakeSize
+    return pygame.Rect(appleX, appleY, snakeSize, snakeSize)
+
+
+score = 0
+
+# Main game loop
+running = True
+while running:
+    # Event handling
+
+    # Update display
+    screen.fill(white)
+    textDrawer("Score: " + str(score), font, green, screen, 10, 10)
+
+    pygame.draw.rect(screen, red, appleSpawner())
+    pygame.display.update()
+    clock.tick(fps)
