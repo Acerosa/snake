@@ -11,7 +11,7 @@ This simple implementation of the classic Snake game using Python and the Pygame
 ## How to Play:
 1. Clone the repository to your local machine.
 2. Make sure you have Python and Pygame installed.
-3. Run the `snake_game.py` file to start the game.
+3. Run the `snakeGame.py` file to start the game.
 4. Use the arrow keys to control the snake.
 5. Eat apples to grow longer and avoid colliding with walls or yourself.
 6. When the game ends, press any key to play again.
